@@ -1,0 +1,73 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPyRhCqb8hLmRiY6igLlQqs",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Ishwarya-L/Prolog--minimax-/blob/main/Prolog%20-%20minimax\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hbdbzGxgH4Hf",
+        "outputId": "5e0a8d17-1380-467b-f0c0-1659909992a8"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Possible Diagnoses: {'flu'}\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Knowledge Base: Rules and Facts\n",
+        "rules = [\n",
+        "    {\"if\": {\"fever\", \"cough\"}, \"then\": \"flu\"},\n",
+        "    {\"if\": {\"fever\", \"rash\"}, \"then\": \"measles\"},\n",
+        "    {\"if\": {\"headache\", \"sensitivity to light\"}, \"then\": \"migraine\"},\n",
+        "    {\"if\": {\"sore throat\", \"fever\"}, \"then\": \"strep throat\"}\n",
+        "]\n",
+        "\n",
+        "# Decision Engine\n",
+        "def infer_diagnosis(facts, rules):\n",
+        "    inferred = set()\n",
+        "    for rule in rules:\n",
+        "        if rule[\"if\"].issubset(facts):\n",
+        "            inferred.add(rule[\"then\"])\n",
+        "    return inferred\n",
+        "\n",
+        "# Example Usage\n",
+        "patient_symptoms = {\"fever\", \"cough\"}\n",
+        "\n",
+        "diagnoses = infer_diagnosis(patient_symptoms, rules)\n",
+        "print(\"Possible Diagnoses:\", diagnoses)\n"
+      ]
+    }
+  ]
+}
